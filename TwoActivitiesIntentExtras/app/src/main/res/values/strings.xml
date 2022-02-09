@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TwoActivitiesIntentExtras</string>
+    <string name="text_one">Text One</string>
+    <string name="text_three">Text Three</string>
+    <string name="text_two">Text Two</string>
+    <string name="passage_one">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vestibulum neque nec rutrum interdum. Sed accumsan rhoncus nunc nec volutpat. Nam pulvinar placerat libero sit amet tincidunt. Cras tempor condimentum viverra.
+        Fusce tristique, ex sed rhoncus facilisis, orci erat fringilla diam, eu sollicitudin sapien lectus non libero. Nulla lacus mi, cursus vitae blandit eu, tristique at justo. Nulla sagittis velit quis eros egestas accumsan. Aliquam vel neque velit.
+        Ut cursus leo vel massa laoreet, ut malesuada nisi rutrum. Donec porttitor suscipit turpis, sit amet sollicitudin neque porta ut. Integer justo ante, laoreet at cursus vitae, posuere sit amet urna. Sed auctor eget lacus eget feugiat. Nullam sodales tempor faucibus\n\n.
+
+Sed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet.\n\n\n Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra.
+    \n\n\nSed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet. Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra.</string>
+    <string name="passage_two">Sed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet. Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra\n\n\n\n\n
+    Sed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet. Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra\n\n\n\n
+    Sed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet. Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra</string>
+    <string name="passage_three">Integer elementum Integer elementum Integer elementum Integer elementum \n\n\n\n\n\n\n\n\n
+    Integer elementum Integer elementum Integer elementum Integer elementum Integer elementum\n\n\n\n Integer elementum Integer elementum
+    Sed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet.\n\n\n Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra.
+    \n\n\nSed ultrices egestas risus, elementum condimentum velit euismod eget. Morbi mollis mollis elit at tempus. Etiam est nunc, aliquet et vehicula et, dignissim eu nulla. Fusce purus nisi, accumsan a mattis in, pretium eget magna. In sed vulputate justo. Praesent pulvinar nibh lacus,
+        sit amet ornare nibh tincidunt sit amet. Aenean convallis maximus orci, eget pretium erat ullamcorper id. Proin feugiat at leo id malesuada. Donec sed rhoncus quam. Sed eu dui enim. Suspendisse sed orci id dolor rhoncus maximus sit amet non est. Maecenas sagittis ac nulla
+        eu placerat. Integer elementum tortor nunc, vitae convallis erat auctor quis. Donec molestie tempus vulputate. Nullam feugiat nisl eu nibh malesuada, accumsan scelerisque nunc viverra.</string>
+</resources>
