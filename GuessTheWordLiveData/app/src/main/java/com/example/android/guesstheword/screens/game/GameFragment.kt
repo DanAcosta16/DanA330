@@ -50,7 +50,7 @@ class GameFragment : Fragment() {
                 false
         )
         Log.i("GameFragment", "Called ViewModelProvider.get")
-
+        val time = GameFragmentArgs.fromBundle(arguments!!).time
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

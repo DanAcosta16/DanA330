@@ -23,6 +23,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import com.example.android.guesstheword.screens.score.ScoreFragmentArgs
 
 
 class GameViewModel : ViewModel() {
@@ -37,6 +38,10 @@ class GameViewModel : ViewModel() {
 
     val word: LiveData<String>
         get() = _word
+
+    private val _time = MutableLiveData<Int>()
+    val time: LiveData<Int>
+        get() = _time
 
 
 
@@ -153,8 +158,8 @@ class GameViewModel : ViewModel() {
 
         // Countdown time interval
         private const val ONE_SECOND = 1000L
-
         // Total time for the game
+
         private const val COUNTDOWN_TIME = 60000L
 
     }

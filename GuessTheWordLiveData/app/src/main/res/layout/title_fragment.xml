@@ -70,5 +70,44 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/timerText"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/play_game_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintVertical_bias="0.23000002" />
+
+        <ToggleButton
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ToggleButton"
+            app:layout_constraintBottom_toTopOf="@+id/play_game_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.14"
+            app:layout_constraintStart_toEndOf="@+id/timerText"
+            app:layout_constraintTop_toBottomOf="@+id/title_text"
+            app:layout_constraintVertical_bias="0.19999999" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/slider"
+            android:layout_width="361dp"
+            android:layout_height="44dp"
+            android:scrollbarSize="4dp"
+            android:stepSize="1"
+            android:valueFrom="5"
+            android:valueTo="360"
+            app:layout_constraintBottom_toTopOf="@+id/play_game_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toggleButton"
+            app:layout_constraintVertical_bias="0.444" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
