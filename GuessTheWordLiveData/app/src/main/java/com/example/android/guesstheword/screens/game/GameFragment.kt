@@ -22,6 +22,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -29,6 +31,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.GameFragmentBinding
+import com.example.android.guesstheword.screens.score.ScoreFragmentArgs
+import com.example.android.guesstheword.screens.score.ScoreViewModelFactory
 
 /**
  * Fragment where the game is played
@@ -38,6 +42,7 @@ class GameFragment : Fragment() {
     private lateinit var binding: GameFragmentBinding
 
     private lateinit var viewModel: GameViewModel
+    private lateinit var viewModelFactory: GameViewModelFactory
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -50,8 +55,9 @@ class GameFragment : Fragment() {
                 false
         )
         Log.i("GameFragment", "Called ViewModelProvider.get")
-        val time = GameFragmentArgs.fromBundle(arguments!!).time
-        viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
+        viewModelFactory = GameViewModelFactory(GameFragmentArgs.fromBundle(arguments!!).time)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(GameViewModel::class.java)
+        viewModel.startTimer()
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         /** Setting up LiveData observation relationship **/

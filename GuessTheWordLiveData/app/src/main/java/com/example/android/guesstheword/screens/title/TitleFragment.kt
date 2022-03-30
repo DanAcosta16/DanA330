@@ -37,15 +37,20 @@ class TitleFragment : Fragment() {
         // Inflate the layout for this fragment
         val binding: TitleFragmentBinding = DataBindingUtil.inflate(
                 inflater, R.layout.title_fragment, container, false)
-
+        binding.toggleButton.setOnCheckedChangeListener { _, isChecked ->
+            binding.slider.isEnabled = isChecked
+        }
         binding.playGameButton.setOnClickListener {
             if(binding.toggleButton.isChecked) {
                 val action = TitleFragmentDirections.actionTitleToGame()
-                action.time = slider.value.toInt()
+                action.time = binding.slider.value.toInt()
                 findNavController().navigate(action)
             }
-            else
-                findNavController().navigate(TitleFragmentDirections.actionTitleToGame())
+            else {
+                val action = TitleFragmentDirections.actionTitleToGame()
+                action.time = -1
+                findNavController().navigate(action)
+            }
         }
         return binding.root
     }

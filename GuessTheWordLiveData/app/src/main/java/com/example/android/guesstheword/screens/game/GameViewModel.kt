@@ -26,7 +26,7 @@ import androidx.lifecycle.ViewModel
 import com.example.android.guesstheword.screens.score.ScoreFragmentArgs
 
 
-class GameViewModel : ViewModel() {
+class GameViewModel(timerValue: Int) : ViewModel() {
 
     // The current _word
     private val _word = MutableLiveData<String>()
@@ -38,12 +38,7 @@ class GameViewModel : ViewModel() {
 
     val word: LiveData<String>
         get() = _word
-
-    private val _time = MutableLiveData<Int>()
-    val time: LiveData<Int>
-        get() = _time
-
-
+    val time = timerValue * 1000
 
     private val _eventGameFinish = MutableLiveData<Boolean>()
     val eventGameFinish: LiveData<Boolean>
@@ -59,31 +54,32 @@ class GameViewModel : ViewModel() {
      */
     private fun resetList() {
         wordList = mutableListOf(
-                "queen",
-                "hospital",
-                "basketball",
-                "cat",
-                "change",
-                "snail",
-                "soup",
-                "calendar",
-                "sad",
-                "desk",
-                "guitar",
-                "home",
-                "railway",
-                "zebra",
-                "jelly",
-                "car",
-                "crow",
-                "trade",
-                "bag",
-                "roll",
-                "bubble"
+            "queen",
+            "hospital",
+            "basketball",
+            "cat",
+            "change",
+            "snail",
+            "soup",
+            "calendar",
+            "sad",
+            "desk",
+            "guitar",
+            "home",
+            "railway",
+            "zebra",
+            "jelly",
+            "car",
+            "crow",
+            "trade",
+            "bag",
+            "roll",
+            "bubble"
         )
         wordList.shuffle()
     }
-    private val timer: CountDownTimer
+
+
 
     init {
         _word.value = ""
@@ -92,20 +88,6 @@ class GameViewModel : ViewModel() {
         resetList()
         nextWord()
         // Creates a timer which triggers the end of the game when it finishes
-        timer = object : CountDownTimer(COUNTDOWN_TIME, ONE_SECOND) {
-
-            override fun onTick(millisUntilFinished: Long)
-            {
-                _currentTime.value = millisUntilFinished/ONE_SECOND
-            }
-
-            override fun onFinish() {
-                _currentTime.value = DONE
-                onGameFinish()
-            }
-        }
-
-        timer.start()
     }
 
     /**
@@ -114,7 +96,7 @@ class GameViewModel : ViewModel() {
     override fun onCleared() {
         super.onCleared()
         // Cancel the timer
-        timer.cancel()
+        //timer.cancel()
     }
 
     /** Methods for updating the UI **/
@@ -122,9 +104,33 @@ class GameViewModel : ViewModel() {
         _score.value = (_score.value)?.minus(1)
         nextWord()
     }
+
     fun onCorrect() {
         _score.value = (_score.value)?.plus(1)
         nextWord()
+    }
+
+    fun startTimer(){
+            val timer: CountDownTimer
+            timer = object : CountDownTimer(time.toLong(), ONE_SECOND) {
+
+                override fun onTick(millisUntilFinished: Long) {
+                    _currentTime.value = millisUntilFinished / ONE_SECOND
+                }
+
+                override fun onFinish() {
+                    _currentTime.value = DONE
+                    if(time != -1000)
+                        onGameFinish()
+                }
+            }
+
+            if(time != -1)
+                timer.start()
+            else {
+                timer.cancel()
+            }
+
     }
 
     /**
@@ -140,8 +146,6 @@ class GameViewModel : ViewModel() {
         }
     }
 
-
-
     /** Method for the game completed event **/
 
     fun onGameFinish() {
@@ -151,6 +155,7 @@ class GameViewModel : ViewModel() {
     fun onGameFinishComplete() {
         _eventGameFinish.value = false
     }
+
     companion object {
 
         // Time when the game is over
@@ -163,12 +168,15 @@ class GameViewModel : ViewModel() {
         private const val COUNTDOWN_TIME = 60000L
 
     }
+
     // Countdown time
     private val _currentTime = MutableLiveData<Long>()
     val currentTime: LiveData<Long>
         get() = _currentTime
+
     // The String version of the current time
     val currentTimeString = Transformations.map(currentTime) { time ->
         DateUtils.formatElapsedTime(time)
     }
+
 }

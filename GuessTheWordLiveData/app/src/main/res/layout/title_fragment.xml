@@ -88,6 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ToggleButton"
+            android:checked="true"
             app:layout_constraintBottom_toTopOf="@+id/play_game_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.14"
@@ -100,6 +101,7 @@
             android:layout_width="361dp"
             android:layout_height="44dp"
             android:scrollbarSize="4dp"
+            android:value="60"
             android:stepSize="1"
             android:valueFrom="5"
             android:valueTo="360"
@@ -107,7 +109,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toggleButton"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintVertical_bias="0.762" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
