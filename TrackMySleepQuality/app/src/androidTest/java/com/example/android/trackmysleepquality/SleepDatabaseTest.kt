@@ -16,15 +16,22 @@
 
 package com.example.android.trackmysleepquality
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.SmallTest
 import androidx.test.platform.app.InstrumentationRegistry
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.database.SleepDatabaseDao
 import com.example.android.trackmysleepquality.database.SleepNight
-import org.junit.Assert.assertEquals
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
+import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
@@ -36,7 +43,9 @@ import java.io.IOException
  * adding the UI.
  */
 
+@ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
+@SmallTest
 class SleepDatabaseTest {
 
     private lateinit var sleepDao: SleepDatabaseDao
@@ -48,9 +57,9 @@ class SleepDatabaseTest {
         // Using an in-memory database because the information stored here disappears when the
         // process is killed.
         db = Room.inMemoryDatabaseBuilder(context, SleepDatabase::class.java)
-                // Allowing main thread queries, just for testing.
-                .allowMainThreadQueries()
-                .build()
+            // Allowing main thread queries, just for testing.
+            .allowMainThreadQueries()
+            .build()
         sleepDao = db.sleepDatabaseDao
     }
 
@@ -62,17 +71,57 @@ class SleepDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetNight() {
-        val night = SleepNight()
+    fun insertAndGetNight() = runBlocking {
+        val night = SleepNight(sleepQuality = 9)
         sleepDao.insert(night)
         val tonight = sleepDao.getTonight()
-        assertEquals(tonight?.sleepQuality, -1)
+        assertThat(tonight?.sleepQuality, `is` (9))
     }
 
-//    @Test
-//    fun update() {
-//        val night = SleepNight()
-//        sleepDao.insert(night)
-//
-//    }
+    @Test
+    @Throws(Exception::class)
+    fun update() = runBlocking {
+        var night = SleepNight(nightId = 1L, sleepQuality = 3)
+        sleepDao.insert(night)
+        var tonight = SleepNight(nightId = 1L, sleepQuality = 4)
+        sleepDao.update(tonight)
+        val currentNight = sleepDao.getTonight()
+        assertThat(currentNight?.sleepQuality, `is` (4))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun get() = runBlocking {
+        var night = SleepNight(nightId = 1L)
+        sleepDao.insert(night)
+        var id = 1L;
+        var selectedNight = sleepDao.get(id)
+        assertThat(selectedNight?.nightId, `is` (1L))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun clear() = runBlocking {
+        var night = SleepNight()
+        sleepDao.insert(night)
+        sleepDao.clear()
+        val tonight = sleepDao.getTonight()
+        assertNull(tonight)
+    }
+
+    @get:Rule
+    var instantExecutorRule = InstantTaskExecutorRule()
+    @Test
+    @Throws(Exception::class)
+    fun getAllNights() = runBlocking {
+        var night = SleepNight(nightId = 1)
+        sleepDao.insert(night)
+        var nextNight = SleepNight(nightId = 2)
+        sleepDao.insert(nextNight)
+        val allNights = sleepDao.getAllNights()
+        allNights.getOrAwaitValue()
+
+        assertThat(allNights.value?.isNotEmpty(), `is` (true))
+        assertThat(allNights.value?.size, `is` (2))
+    }
 }
