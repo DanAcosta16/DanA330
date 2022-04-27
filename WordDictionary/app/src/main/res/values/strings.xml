@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">WordDictionary</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addWordMessage">Use the menu to add a word!</string>
+    <string name="add_word">Add word</string>
+    <string name="word_search">Please enter a word to search.</string>
 </resources>
