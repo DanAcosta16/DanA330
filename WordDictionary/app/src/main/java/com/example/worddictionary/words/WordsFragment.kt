@@ -1,9 +1,10 @@
-package com.example.worddictionary
+package com.example.worddictionary.words
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import com.example.worddictionary.R
 import com.example.worddictionary.databinding.FragmentWordsBinding
 
 
@@ -28,6 +29,16 @@ class WordsFragment : Fragment(R.layout.fragment_words) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.overflow_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.add_word -> {
+                view?.findNavController()?.navigate(R.id.action_wordsFragment_to_searchFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 

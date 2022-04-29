@@ -16,8 +16,8 @@
 
         <SearchView
             android:id="@+id/searchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="264dp"
+            android:layout_height="49dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="76dp"
             android:background="@drawable/searchview_background"
@@ -25,6 +25,19 @@
             android:queryBackground="@android:color/transparent"
             android:queryHint="Enter word to search"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="24dp"
+            android:text="Search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/searchView"
             app:layout_constraintTop_toTopOf="parent" />
 
 
