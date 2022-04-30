@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="definitionViewModel"
+            type="com.example.worddictionary.definition.DefinitionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +28,7 @@
 
         <TextView
             android:id="@+id/shortdef1"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -38,7 +40,7 @@
 
         <TextView
             android:id="@+id/shortdef2"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -50,7 +52,7 @@
 
         <TextView
             android:id="@+id/shortdef3"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
@@ -62,10 +64,11 @@
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
+            app:imageUrl="@{definitionViewModel.myWord.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars" />
