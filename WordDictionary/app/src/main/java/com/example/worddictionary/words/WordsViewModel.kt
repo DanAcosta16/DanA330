@@ -10,26 +10,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class WordsViewModel(db: WordDatabaseDao): ViewModel() {
-    val database: WordDatabaseDao = db
-    fun dbExists() = runBlocking {
-        val addData = database.getAllWords()
-        return@runBlocking addData.value?.size!! > 0
-    }
+    private val _dictWords = db.getActiveWords()
 
+    val dictWords: LiveData<List<Word>>
+        get() = _dictWords
 
-    var words: LiveData<List<Word>>? = null
-
-    init {
-        getWords()
-    }
-
-    private fun getWords(){
-        viewModelScope.launch {
-            words = try {
-                database.getActiveWords()
-            } catch (e: Exception) {
-                null
-            }
-        }
+    fun changeFilter(filter: String) {
     }
 }

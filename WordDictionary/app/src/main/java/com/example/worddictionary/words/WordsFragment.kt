@@ -32,9 +32,7 @@ class WordsFragment : Fragment(R.layout.fragment_words) {
         val viewModelFactory = WordsViewModelFactory(database)
         val viewModel = ViewModelProvider(this, viewModelFactory).get(
             WordsViewModel::class.java)
-//        if(viewModel.dbExists()){
-//            binding.addWordMessage.visibility = View.GONE
-//        }
+
         binding.dictWords.adapter = WordsListAdapter()
 
         return binding.root

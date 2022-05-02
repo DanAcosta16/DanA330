@@ -20,9 +20,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView,
-    data: List<Word>?) {
-    val adapter = recyclerView.adapter as WordsListAdapter
-    adapter.submitList(data)
-}
+//@BindingAdapter("listData")
+//fun bindRecyclerView(recyclerView: RecyclerView,
+//    data: List<Word>?) {
+//    val adapter = recyclerView.adapter as WordsListAdapter
+//    adapter.submitList(data)
+//}

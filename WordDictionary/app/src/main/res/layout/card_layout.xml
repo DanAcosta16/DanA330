@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="word"
+            type="com.example.worddictionary.database.Word" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/card_view"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="#81C"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="3dp"
+        app:contentPadding="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relative_layout"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" />
+
+            <TextView
+                android:id="@+id/item_def1"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@+id/item_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/item_def2"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/item_def1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp" />
+
+            <TextView
+                android:id="@+id/item_def3"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/item_def2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="10dp" />
+
+            <ImageView
+                android:id="@+id/item_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintLeft_toRightOf="@id/item_def1"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="45dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,16 +1,23 @@
 package com.example.worddictionary.words
 
+import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.worddictionary.R
 import com.example.worddictionary.database.Word
-import com.example.worddictionary.databinding.DictWordItemBinding
+import com.example.worddictionary.databinding.CardLayoutBinding
 
 class WordsListAdapter : ListAdapter<Word, WordsListAdapter.WordViewHolder>(DiffCallback) {
     class WordViewHolder(
-        private var binding: DictWordItemBinding
+        private var binding: CardLayoutBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(word: Word) {
@@ -20,7 +27,7 @@ class WordsListAdapter : ListAdapter<Word, WordsListAdapter.WordViewHolder>(Diff
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        return WordViewHolder(DictWordItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return WordViewHolder(CardLayoutBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
@@ -30,14 +37,12 @@ class WordsListAdapter : ListAdapter<Word, WordsListAdapter.WordViewHolder>(Diff
 
     companion object DiffCallback : DiffUtil.ItemCallback<Word>() {
         override fun areItemsTheSame(oldItem: Word, newItem: Word): Boolean {
-            TODO("Review this")
             return oldItem === newItem
         }
 
         override fun areContentsTheSame(oldItem: Word, newItem: Word): Boolean {
-            TODO("Review this")
             return oldItem.wordId == newItem.wordId
         }
     }
-
 }
+
