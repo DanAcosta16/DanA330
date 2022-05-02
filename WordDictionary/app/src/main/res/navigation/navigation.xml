@@ -30,8 +30,11 @@
         tools:layout="@layout/fragment_definition" >
         <argument
             android:name="word"
-            app:argType="com.example.worddictionary.words.Word"
+            app:argType="com.example.worddictionary.database.Word"
             app:nullable="true"
             android:defaultValue="@null" />
+        <action
+            android:id="@+id/action_definitionFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
     </fragment>
 </navigation>

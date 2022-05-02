@@ -3,7 +3,7 @@ package com.example.worddictionary
 import androidx.test.espresso.matcher.ViewMatchers.assertThat
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.example.worddictionary.network.DictionaryApi
-import com.example.worddictionary.words.Word
+import com.example.worddictionary.database.Word
 import junit.framework.Assert.fail
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -38,11 +38,11 @@ class ApiInstrumentedTest {
         val shortDef = entry.getJSONArray("shortdef")
 
         val word = when (shortDef.length()) {
-            0 -> Word(wordId, "No definition available")
-            1 -> Word(wordId, shortDef.getString(0))
-            2 -> Word(wordId, shortDef.getString(0), shortDef.getString(1))
+            0 -> Word(wordId, null, "No definition found")
+            1 -> Word(wordId, null, shortDef.getString(0))
+            2 -> Word(wordId, null, shortDef.getString(0), shortDef.getString(1))
             else -> Word(
-                wordId, shortDef.getString(0),
+                wordId, null, shortDef.getString(0),
                 shortDef.getString(1),
                 shortDef.getString(2)
             )

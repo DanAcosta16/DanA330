@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.worddictionary.R
 import com.example.worddictionary.databinding.FragmentSearchBinding
 import com.example.worddictionary.network.DictionaryApi
-import com.example.worddictionary.words.Word
+import com.example.worddictionary.database.Word
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 
@@ -69,7 +69,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     }
 
-    private fun constructWord(wordId: String, image: String?, json: JSONArray): Word{
+    private fun constructWord(wordId: String, image: String?, json: JSONArray): Word {
         val word = when (json.length()) {
             0 -> Word(wordId, null, "No definition available")
             1 -> Word(wordId, image, json.getString(0))

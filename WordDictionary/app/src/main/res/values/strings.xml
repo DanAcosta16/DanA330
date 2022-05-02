@@ -5,4 +5,5 @@
     <string name="addWordMessage">Use the menu to add a word!</string>
     <string name="add_word">Add word</string>
     <string name="word_search">Please enter a word to search.</string>
+    <string name="search_again">Search Again</string>
 </resources>
