@@ -15,6 +15,9 @@ data class Word (
     val defOne: String,
     val defTwo: String? = null,
     val defThree: String? = null,
-    var active: Boolean = true
+    var active: Boolean = true,
+    var opacity: Float = 1.0f
 
 ): Parcelable
+
+

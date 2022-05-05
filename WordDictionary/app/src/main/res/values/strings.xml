@@ -6,4 +6,7 @@
     <string name="add_word">Add word</string>
     <string name="word_search">Please enter a word to search.</string>
     <string name="search_again">Search Again</string>
+    <string name="clear_data">Clear Data</string>
+    <string name="definition_image">Definition image</string>
+    <string name="textview">TextView</string>
 </resources>

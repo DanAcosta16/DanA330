@@ -1,10 +1,7 @@
 package com.example.worddictionary.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.worddictionary.database.Word
 
 @Dao
@@ -15,6 +12,9 @@ interface WordDatabaseDao {
 
     @Update
     suspend fun updateWord(word: Word)
+
+    @Query("DELETE FROM dictionary_word")
+    suspend fun clear()
 
     @Query("SELECT exists(select * from dictionary_word WHERE wordId = :id)")
     suspend fun wordExists(id: String): Boolean

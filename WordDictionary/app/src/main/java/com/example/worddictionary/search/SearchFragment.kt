@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.worddictionary.R
 import com.example.worddictionary.databinding.FragmentSearchBinding
 import com.example.worddictionary.network.DictionaryApi
 import com.example.worddictionary.database.Word
@@ -16,72 +16,73 @@ import kotlinx.coroutines.launch
 import org.json.JSONArray
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class SearchFragment : Fragment(R.layout.fragment_search) {
 
+class SearchFragment : Fragment(){
+
+    private val viewModel: SearchViewModel by lazy {
+        ViewModelProvider(this).get(SearchViewModel::class.java)
+    }
     private lateinit var binding: FragmentSearchBinding
-    var imageURL = "https://www.merriam-webster.com/assets/mw/static/art/dict/"
+//    private val suggestions = viewModel.suggestedWords.value
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
+//        val application = requireNotNull(activity).application
         binding = FragmentSearchBinding.inflate(inflater)
-        binding.searchButton.setOnClickListener { apiSearch() }
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+//        viewModel.suggestedWords.observe(viewLifecycleOwner, Observer { suggestedWords ->
+//            if(null != suggestedWords){
+//                val searchList = viewModel.suggestedWords.value!!
+//                var searchAdapter = SearchWordAdapter(searchList, this)
+//                binding.searchRecycler.layoutManager = LinearLayoutManager(application)
+//                binding.searchRecycler.adapter = searchAdapter
+//                searchAdapter.notifyDataSetChanged()
+//                binding.searchRecycler.visibility = View.VISIBLE
+//            }
+//        })
+        binding.searchButton.setOnClickListener { apiSearch(binding.searchView.query.toString()) }
         return binding.root
     }
 
-    private fun apiSearch(){
-        val search: CharSequence = binding.searchView.query
-        val searchString = search.toString()
+    private fun apiSearch(search: String){
         lifecycleScope.launch {
-            val response = DictionaryApi.retrofitService.getWord(searchString)
+            val response = DictionaryApi.retrofitService.getWord(search)
             val jsonString = response.body()
             if (jsonString != null) {
                 Log.d("SearchFragment", jsonString)
             }
             if (jsonString?.startsWith("[{\"meta\":") == true) {
-                val word: Word = parseJsontoWord(searchString, jsonString)
+                val word: Word = viewModel.parseJsontoWord(search, jsonString)
                 val directions = SearchFragmentDirections.actionSearchFragmentToDefinitionFragment(
                     word)
                 findNavController().navigate(directions)
+            }
+            else{
+                val json = JSONArray(jsonString)
+                val list: MutableList<String> = arrayListOf()
+                for (i in 0 until json.length()) {
+                    val word = json.getJSONObject(i).toString()
+                    list.add(word)
+                }
+                viewModel.setSuggestedWords(list)
+
             }
         }
 
     }
 
-    private fun parseJsontoWord(wordId: String, jsonString: String): Word {
-        val json = JSONArray(jsonString)
-        val entry = json.getJSONObject(0)
-        val shortDef = entry.getJSONArray("shortdef")
-        if(entry.has("art")) {
-            val art = entry.getJSONObject("art")
-            val artID = art.getString("artid")
-            val artURL = "$imageURL$artID.gif"
-            return constructWord(wordId, artURL, shortDef)
-        }
-        return constructWord(wordId, null, shortDef)
+//    override fun onSearchItemClicked(position: Int) {
+//        val clickedItem = suggestions?.get(position)
+//        if (clickedItem != null) {
+//            val newSearch = clickedItem.toString()
+//            apiSearch(newSearch)
+//        }
+//    }
 
-    }
-
-    private fun constructWord(wordId: String, image: String?, json: JSONArray): Word {
-        val word = when (json.length()) {
-            0 -> Word(wordId, null, "No definition available")
-            1 -> Word(wordId, image, json.getString(0))
-            2 -> Word(wordId, image, json.getString(0), json.getString(1))
-            else -> Word(
-                wordId, image,
-                json.getString(0),
-                json.getString(1),
-                json.getString(2)
-            )
-        }
-        return word
-    }
 
 }

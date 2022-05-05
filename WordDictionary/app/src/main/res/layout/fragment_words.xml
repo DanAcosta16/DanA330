@@ -13,20 +13,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".words.WordsFragment">
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clear_data"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dict_words"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="6dp"
             android:clipToPadding="false"
+            android:padding="6dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clear_button"
+            app:layout_constraintVertical_bias="0.0"
+            app:listData="@{viewModel.dictWords}"
             app:spanCount="2"
-            tools:itemCount="8"/>
+            tools:itemCount="8"
+            tools:listitem="@layout/card_layout" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
